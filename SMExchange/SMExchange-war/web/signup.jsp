@@ -4,22 +4,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-        <title>Social Media Exchange Web Application</title>
+        <title>Social media exchange application</title>
     </head>
     <body>
-        <h1>Welcome to Social media exchange</h1>
-        
-        <form action="dosignin.jsp" method="POST">
+        <h1>Registration</h1>
+        <form action="dosignup.jsp" method="POST">
+            <p>Type: <select name="type" id="type">
+                <option value="client">Client</option>
+                <option value="performer">Performer</option>
+                <option value="agency">Agency</option>
+            </select></p>
+            <p>Name: <input type="text" name="name" value="" /></p>
             <p>Username: <input type="text" name="username" value="" /></p>
             <p>Password: <input type="text" name="password" value="" /></p>
-            <input type="submit" value="Sign in" />
-        </form>
-        
-        <form action="signup.jsp" method="POST">
+            <p>Phone: <input type="text" name="phone" value="" /></p>
             <input type="submit" value="Sign up" />
         </form>
-        
-        <!--<p><a href="add.jsp">Add new record</a></p>
-        <p><a href="find.jsp">Find record</a></p>-->
     </body>
 </html>

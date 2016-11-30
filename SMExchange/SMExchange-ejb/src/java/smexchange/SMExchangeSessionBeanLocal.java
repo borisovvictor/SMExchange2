@@ -13,5 +13,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface SMExchangeSessionBeanLocal {
+
+    int authUser(String username, String password);
     
 }
