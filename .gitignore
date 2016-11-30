@@ -1,10 +1,13 @@
 *.class
 
-* - Copy/**
+* - Copy/
 *.pdf
-old/**
+old/
 *.docx
-_DB/**
+_DB/
+build/
+DB/
+dist/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
