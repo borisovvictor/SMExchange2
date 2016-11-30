@@ -16,3 +16,16 @@ _DB/**
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/SMExchangeLibrary/nbproject/private/
+/SMExchangeLibrary/build/
+/SMExchangeLib/nbproject/private/
+/SMExchange/nbproject/private/
+/SMExchange/SMExchange-war/nbproject/private/
+/SMExchange/SMExchange-ejb/nbproject/private/
+/SMExchange/SMExchange-ejb/build/
+/SMExchange/SMExchange-ejb/dist/
+/SMExchange/SMExchange-war/build/
+/SMExchange/build/
+/SMExchange/SMExchange-war/dist/
+/SMExchangeLib/build/
+/SMExchangeLib/dist/
