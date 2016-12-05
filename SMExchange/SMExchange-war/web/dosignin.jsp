@@ -14,15 +14,14 @@
         <%InitialContext ic = new InitialContext();
         ejbRef = (SMExchangeSessionBeanRemote)ic.lookup("smexchange.SMExchangeSessionBeanRemote");
         int result = ejbRef.auth(request.getParameter("username"),
-           request.getParameter("password"));%>
-           
+           request.getParameter("password"));%>          
         
         <% if (result == -1) { %>
             <h1>Sign in failed!</h1>
             <p><a href="index.jsp">Return</a></p>
         <% } else { %>
             <h1>Sign in succeeded!</h1>
-            <p><a href="home.jsp">Return</a></p>
+            <p><a href="home.jsp">Go home</a></p>
         <% } %>
         
     </body>

@@ -18,6 +18,7 @@
             <p>Username: <input type="text" name="username" value="" /></p>
             <p>Password: <input type="text" name="password" value="" /></p>
             <p>Phone: <input type="text" name="phone" value="" /></p>
+            <p>Agency ID: <input type="text" name="agencyid" value="" /></p>
             <input type="submit" value="Sign up" />
         </form>
     </body>

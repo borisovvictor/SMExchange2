@@ -7,17 +7,15 @@ package smexchange;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -25,13 +23,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Victor
  */
 @Entity
-@Table(name = "AGENCY")
+@Table(name = "CLIENT")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Agency.findAll", query = "SELECT a FROM Agency a")
-    , @NamedQuery(name = "Agency.findById", query = "SELECT a FROM Agency a WHERE a.id = :id")
-    , @NamedQuery(name = "Agency.findByAgencyid", query = "SELECT a FROM Agency a WHERE a.agencyid = :agencyid")})
-public class Agency implements Serializable {
+    @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c")
+    , @NamedQuery(name = "Client.findById", query = "SELECT c FROM Client c WHERE c.id = :id")
+    , @NamedQuery(name = "Client.findByClientid", query = "SELECT c FROM Client c WHERE c.clientid = :clientid")
+    , @NamedQuery(name = "Client.findByPhonenum", query = "SELECT c FROM Client c WHERE c.phonenum = :phonenum")})
+public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,19 +41,22 @@ public class Agency implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "AGENCYID")
-    private int agencyid;
+    @Column(name = "CLIENTID")
+    private int clientid;
+    @Size(max = 30)
+    @Column(name = "PHONENUM")
+    private String phonenum;
 
-    public Agency() {
+    public Client() {
     }
 
-    public Agency(Integer id) {
+    public Client(Integer id) {
         this.id = id;
     }
 
-    public Agency(Integer id, int agencyid) {
+    public Client(Integer id, int clientid) {
         this.id = id;
-        this.agencyid = agencyid;
+        this.clientid = clientid;
     }
 
     public Integer getId() {
@@ -65,12 +67,20 @@ public class Agency implements Serializable {
         this.id = id;
     }
 
-    public int getAgencyid() {
-        return agencyid;
+    public int getClientid() {
+        return clientid;
     }
 
-    public void setAgencyid(int agencyid) {
-        this.agencyid = agencyid;
+    public void setClientid(int clientid) {
+        this.clientid = clientid;
+    }
+
+    public String getPhonenum() {
+        return phonenum;
+    }
+
+    public void setPhonenum(String phonenum) {
+        this.phonenum = phonenum;
     }
 
     @Override
@@ -83,10 +93,10 @@ public class Agency implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Agency)) {
+        if (!(object instanceof Client)) {
             return false;
         }
-        Agency other = (Agency) object;
+        Client other = (Client) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -95,18 +105,7 @@ public class Agency implements Serializable {
 
     @Override
     public String toString() {
-        return "smexchange.Agency[ id=" + id + " ]";
-    }
-        
-    @OneToOne //(cascade=CascadeType.ALL)
-    @JoinColumn(name="USERID", referencedColumnName = "ID", updatable = false)//unique= true, nullable=true, insertable=true, updatable=true)
-    private Users user;
-    public Users getUser() {
-        return user;
-    }
-    
-    public void setUser(Users user) {
-        this.user = user;
+        return "smexchange.Client[ id=" + id + " ]";
     }
     
 }

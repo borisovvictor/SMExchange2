@@ -12,12 +12,13 @@
         <%!SMExchangeSessionBeanRemote ejbRef;%>
         
         <%InitialContext ic = new InitialContext();
-        ejbRef = (SMExchangeSessionBeanRemote)ic.lookup("smexchange.SMExchangeSessionBeanRemote");
-        ejbRef.createNewUser(request.getParameter("type"), 
+        ejbRef = (SMExchangeSessionBeanRemote)ic.lookup("smexchange.SMExchangeSessionBeanRemote");%>
+        <%=ejbRef.createNewUser(request.getParameter("type"), 
                 request.getParameter("name"), 
                 request.getParameter("username"), 
                 request.getParameter("password"),
-                request.getParameter("phone"));
+                request.getParameter("phone"),
+                request.getParameter("agencyid"))
         %>
 
         <h1>Successfully registered!</h1>
