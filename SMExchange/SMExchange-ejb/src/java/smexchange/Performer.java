@@ -11,8 +11,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -132,6 +134,17 @@ public class Performer implements Serializable {
     @Override
     public String toString() {
         return "smexchange.Performer[ id=" + id + " ]";
+    }
+    
+    @OneToOne //(cascade=CascadeType.ALL)
+    @JoinColumn(name="USERID", referencedColumnName = "ID", updatable = false)//unique= true, nullable=true, insertable=true, updatable=true)
+    private Users user;
+    public Users getUser() {
+        return user;
+    }
+    
+    public void setUser(Users user) {
+        this.user = user;
     }
     
 }

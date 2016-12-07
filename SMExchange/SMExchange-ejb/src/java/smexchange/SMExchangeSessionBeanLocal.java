@@ -5,6 +5,7 @@
  */
 package smexchange;
 
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -40,5 +41,9 @@ public interface SMExchangeSessionBeanLocal {
     void addClient(int userId, String phoneNumber);
     
     void addPerformer(int userId, String phoneNumber, int agencyID);
+    
+    List<Orders> getOrdersByUserId(int userID);
+    
+    List<Offer> getOffersByUserId(int userID);
     
 }

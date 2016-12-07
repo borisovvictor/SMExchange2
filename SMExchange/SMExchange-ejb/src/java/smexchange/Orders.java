@@ -25,14 +25,18 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Victor
  */
 @Entity
-@Table(name = "CLIENT")
+@Table(name = "ORDERS")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c")
-    , @NamedQuery(name = "Client.findById", query = "SELECT c FROM Client c WHERE c.id = :id")
-    , @NamedQuery(name = "Client.findByClientid", query = "SELECT c FROM Client c WHERE c.clientid = :clientid")
-    , @NamedQuery(name = "Client.findByPhonenum", query = "SELECT c FROM Client c WHERE c.phonenum = :phonenum")})
-public class Client implements Serializable {
+    @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Orders o")
+    , @NamedQuery(name = "Orders.findById", query = "SELECT o FROM Orders o WHERE o.id = :id")
+    , @NamedQuery(name = "Orders.findByClientid", query = "SELECT o FROM Orders o WHERE o.clientid = :clientid")
+    //, @NamedQuery(name = "Orders.findByOfferid", query = "SELECT o FROM Orders o WHERE o.offerid = :offerid")
+    , @NamedQuery(name = "Orders.findByOrderstatus", query = "SELECT o FROM Orders o WHERE o.orderstatus = :orderstatus")
+    , @NamedQuery(name = "Orders.findBySpeccond", query = "SELECT o FROM Orders o WHERE o.speccond = :speccond")})
+
+//SELECT o FROM (Orders JOIN Offer ON Orders.offerid = Offer.id AND Offer.performerid = :performerid)
+public class Orders implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,18 +49,23 @@ public class Client implements Serializable {
     @NotNull
     @Column(name = "CLIENTID")
     private int clientid;
+    //@Column(name = "OFFERID")
+    //private Integer offerid;
+    @Size(max = 10)
+    @Column(name = "ORDERSTATUS")
+    private String orderstatus;
     @Size(max = 30)
-    @Column(name = "PHONENUM")
-    private String phonenum;
+    @Column(name = "SPECCOND")
+    private String speccond;
 
-    public Client() {
+    public Orders() {
     }
 
-    public Client(Integer id) {
+    public Orders(Integer id) {
         this.id = id;
     }
 
-    public Client(Integer id, int clientid) {
+    public Orders(Integer id, int clientid) {
         this.id = id;
         this.clientid = clientid;
     }
@@ -77,12 +86,28 @@ public class Client implements Serializable {
         this.clientid = clientid;
     }
 
-    public String getPhonenum() {
-        return phonenum;
+    /*public Integer getOfferid() {
+        return offerid;
     }
 
-    public void setPhonenum(String phonenum) {
-        this.phonenum = phonenum;
+    public void setOfferid(Integer offerid) {
+        this.offerid = offerid;
+    }*/
+
+    public String getOrderstatus() {
+        return orderstatus;
+    }
+
+    public void setOrderstatus(String orderstatus) {
+        this.orderstatus = orderstatus;
+    }
+
+    public String getSpeccond() {
+        return speccond;
+    }
+
+    public void setSpeccond(String speccond) {
+        this.speccond = speccond;
     }
 
     @Override
@@ -95,10 +120,10 @@ public class Client implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Client)) {
+        if (!(object instanceof Orders)) {
             return false;
         }
-        Client other = (Client) object;
+        Orders other = (Orders) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -107,18 +132,18 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "smexchange.Client[ id=" + id + " ]";
+        return "smexchange.Orders[ id=" + id + " ]";
     }
     
     @OneToOne //(cascade=CascadeType.ALL)
-    @JoinColumn(name="USERID", referencedColumnName = "ID", updatable = false)//unique= true, nullable=true, insertable=true, updatable=true)
-    private Users user;
-    public Users getUser() {
-        return user;
+    @JoinColumn(name="OFFERID", referencedColumnName = "ID", updatable = false)//unique= true, nullable=true, insertable=true, updatable=true)
+    private Offer offer;
+    public Offer getOffer() {
+        return offer;
     }
     
-    public void setUser(Users user) {
-        this.user = user;
+    public void setOffer(Offer offer) {
+        this.offer = offer;
     }
     
 }
